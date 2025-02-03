@@ -23,7 +23,7 @@ def root():
 
 
 @app.get("/authors/", response_model=list[schemas.Author])
-def read_all_authors(db: Session = Depends(get_db), skip: int = 1, limit: int = 10):
+def read_all_authors(db: Session = Depends(get_db), skip: int = 0, limit: int = 10):
     return crud.get_authors(db=db, skip=skip, limit=limit)
 
 
@@ -43,7 +43,7 @@ def single_author(author_id: int, db: Session = Depends(get_db)):
 @app.get("/books/", response_model=list[schemas.Book])
 def read_all_books(
         db: Session = Depends(get_db),
-        skip: int = 1,
+        skip: int = 0,
         limit: int = 10,
         author_id: int | None = None
 ):

@@ -6,7 +6,7 @@ from db import models
 import schemas
 
 
-def get_authors(db: Session, skip: int = 1, limit: int = 10):
+def get_authors(db: Session, skip: int = 0, limit: int = 10):
     return db.query(models.DBAuthor).offset(skip).limit(limit).all()
 
 
@@ -24,7 +24,7 @@ def get_single_author(db: Session, author_id: int):
 
 def get_books(
         db: Session,
-        skip: int = 1,
+        skip: int = 0,
         limit: int = 10,
         author_id: Optional[int] = None
 ):
