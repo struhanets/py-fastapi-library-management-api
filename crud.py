@@ -1,3 +1,5 @@
+from typing import Optional
+
 from sqlalchemy.orm import Session
 
 from db import models
@@ -24,12 +26,12 @@ def get_books(
         db: Session,
         skip: int = 1,
         limit: int = 10,
-        author_id: int | None = None
+        author_id: Optional[int] = None
 ):
     queryset = db.query(models.DBBook)
 
-    # if author_id:
-    #     queryset = queryset.filter(models.DBBook.author_id == author_id)
+    if author_id:
+        queryset = queryset.filter(models.DBBook.author_id == author_id)
 
     return queryset.offset(skip).limit(limit).all()
 

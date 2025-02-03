@@ -53,7 +53,6 @@ def read_all_books(
 @app.get("/books/{book_id}", response_model=schemas.Book)
 def get_single_book(
         book_id: int,
-        book: schemas.BookCreate,
         db: Session = Depends(get_db)
 ):
     return crud.get_book_by_id(db=db, book_id=book_id)
